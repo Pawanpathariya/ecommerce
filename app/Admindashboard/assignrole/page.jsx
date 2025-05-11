@@ -55,7 +55,7 @@ const AssignRolePage = () => {
     }
 
     return (
-        <div className='container mx-auto p-4'>
+        <div className='container mx-auto p-4 ml-50'>
             <h1 className='text-3xl font-bold mb-4 text-center'>Assign Role</h1>
             <div className='bg-white rounded-lg shadow-md p-4'>
                 <table className='w-full border-collapse'>

@@ -85,8 +85,8 @@ const Sidebar = () => {
        </CanComponent>
        <CanComponent I="update" a="Product">
           <li>
-    <Link href="/Admindashboard/edit" className="text-white hover:underline text-lg font-semibold">
-      <FaEdit className="inline-block mr-2" /> Edit Product
+    <Link href="/Admindashboard/status" className="text-white hover:underline text-lg font-semibold">
+      <FaEdit className="inline-block mr-2" /> Product Status
     </Link>
   </li>
        </CanComponent>

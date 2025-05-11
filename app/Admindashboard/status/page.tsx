@@ -16,7 +16,7 @@ const Page: React.FC = () => {
   const loadData = async () => {
     const response = await getProductAdmin();
     console.log(response?.products);
-    const filteredProducts = await response?.products.filter((item: any) => item.vendorId== id);
+    const filteredProducts = await response?.products.filter((item: any) => item.userId== id);
    setProduct(filteredProducts);
   }
   
