@@ -1,0 +1,8 @@
+@import "tailwindcss";
+.news{
+    background-image: url('/images/news.webp');
+    background-color:#5e636e;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

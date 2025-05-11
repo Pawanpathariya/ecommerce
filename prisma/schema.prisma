@@ -1,0 +1,89 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+        
+model ProductCate {
+  id             Int      @id @default(autoincrement())
+  proCategory    String
+  proName        String
+  proPrice       String
+  proDescription String
+  sameDay        Boolean?
+  type           String
+  proImage       String
+  status         String   @default("pending")
+  userId       String
+  user         User   @relation("VendorToProduct", fields: [userId], references: [id])
+}
+
+// model Vendor {
+//   id       Int           @id @default(autoincrement())
+//   name     String
+//   email    String
+//   password String
+//   phone    String
+//   products ProductCate[] @relation("VendorToProduct")
+//   otp      String       @default("pending")
+// }
+
+// model Admin {
+//   id       Int    @id @default(autoincrement())
+//   name     String
+//   email    String
+//   password String
+//   phone    String
+//   otp      String     @default("pending")
+// }
+
+model Category {
+  id    Int    @id @default(autoincrement())
+  cat   String
+  Image String
+}
+
+model Order {
+  id                Int      @id @default(autoincrement())
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  userName          String
+  userEmail         String
+  phoneNumber       String
+  address           String
+  pincode           String
+  products          Json
+  amount            Int
+  razorpayOrderId   String
+  razorpayPaymentId String
+  razorpaySignature String
+  paymentStatus     String   @default("pending")
+}
+
+    
+model User{
+  id    String @id @default(cuid())
+  roleId String?
+  role Role? @relation(fields: [roleId], references: [id])
+  name  String
+  email String @unique
+  permissions String[]
+ phone    String
+  password String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  products ProductCate[] @relation("VendorToProduct")
+  otp      String       @default("pending")
+
+}
+model Role{
+  id    String @id @default(cuid())
+  permissions String[]
+  name  String
+  users User[]
+}
