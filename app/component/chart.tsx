@@ -1,7 +1,7 @@
 'use client';
 import { getSales } from '../actions/getSales';
 
-import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts';
 import { useEffect, useState } from 'react';
 
 interface SalesData {
@@ -22,9 +22,9 @@ export default function SalesChart() {
 
   return (
     <div className="p-6 bg-white rounded-2xl shadow-xl w-full max-w-6xl mx-auto overflow-scroll">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-6">📈 Sales Overview</h2>
-      <ResponsiveContainer width={900} height={400}>
-        <LineChart data={sales}>
+      <h2 className="text-2xl font-semibold text-gray-800 mb-6">📊 Sales Overview</h2>
+      <ResponsiveContainer width={1000} height={400}>
+        <BarChart data={sales}>
           <defs>
             <linearGradient id="colorSales" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#6366f1" stopOpacity={0.8}/>
@@ -49,19 +49,15 @@ export default function SalesChart() {
             labelStyle={{ color: '#475569' }}
           />
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
-          <Line 
-            type="monotone" 
+          <Bar 
             dataKey="amount" 
-            stroke="#6366f1" 
-            strokeWidth={3}
-            dot={{ r: 4, stroke: '#6366f1', strokeWidth: 2, fill: '#fff' }}
-            activeDot={{ r: 6 }}
+            fill="aqua" 
+            barSize={50}
+            radius={[20, 10, 0, 0]}
           />
-        </LineChart>
+        </BarChart>
       </ResponsiveContainer>
     </div>
   );
 }
-
-
 

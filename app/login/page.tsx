@@ -43,7 +43,7 @@ const Login: React.FC = () => {
 
       <div className="p-12 absolute top-90 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-lg w-130 h-auto bg-white">
         <div>
-          <h1 className="text-2xl inter">Admin Login</h1>
+          <h1 className="text-2xl inter">Login</h1>
           <p>
             Don't have an account?{' '}
             <span className="text-blue-600 relative left-2.5 font-bold">

@@ -3,6 +3,7 @@ import { Productaction } from '../../actions/productaction';
 import { getCategory } from '../../actions/addCategory';
 import { useActionState, useEffect, useState, startTransition } from 'react';
 import { toast } from 'react-hot-toast';
+
 const initialState = {
   success: false,
   error: ''
@@ -18,9 +19,9 @@ const Page: React.FC = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     startTransition(() => {
-      const formData = new FormData(event.currentTarget);
-      formData.append('id', id as string);
-      formAction(formData);
+      const formDataObj = new FormData(event.currentTarget);
+      formDataObj.append('id', id as string);
+      formAction(formDataObj);
       setFormData(null);
     });
   };
@@ -28,7 +29,7 @@ const Page: React.FC = () => {
   useEffect(() => {
     if (state.success) {
       setFormData(null);
-      toast.success('Data inserted successfully!');
+      toast.success('Product added successfully!');
     }
   }, [state.success]);
 
@@ -37,7 +38,7 @@ const Page: React.FC = () => {
       const categorys = await getCategory();
       setCategory(categorys.categorys);
     } catch (error) {
-      console.error('Error fetching categorys:', error);
+      console.error('Error fetching categories:', error);
     }
   };
 
@@ -46,72 +47,151 @@ const Page: React.FC = () => {
   }, []);
 
   return (
-    <>
-      <div className='w-full'>
-        <h1 className='text-2xl font-bold text-center'>Insert Page</h1>
-        <form onSubmit={handleSubmit} className='ml-40 mt-10 flex flex-col justify-center items-center'>
-          <div className='flex flex-col'>
-            <div className="flex bg-white rounded-md shadow-md p-4 h-16 gap-2">
-              <label htmlFor="category" className="text-gray-600 w-50 font-semibold block mb-2">Select Category:</label>
-              <select name="category" required value={formData?.category || ''} onChange={e => setFormData({...formData, category: e.target.value})}>
-                <option value="" className='w-full'>----Select-----</option>
-                {category.map((category: any) => (
-                  <option key={category.id} value={category.cat} className='w-full'>{category.cat}</option>
-                ))}
-              </select>
-            </div>
+    <div className="min-h-screen overflow-y-scroll scroll-smooth scrollbar-none">
+      <div className="w-200 mx-auto bg-white p-8 rounded-2xl shadow-md overflow-y-scroll h-150 ml-50 scroll-smooth scrollbar-none">
+        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Add New Product</h1>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          
 
-            <div className="flex bg-white rounded-md shadow-md p-4 h-16 gap-2">
-              <label htmlFor="name" className="text-gray-600 w-43 font-semibold block mb-2">Product Name:</label>
-              <input type="text" id="name" name="name" className="border-2 border-gray-500 p-2 rounded-md w-full" required value={formData?.name || ''} onChange={e => setFormData({...formData, name: e.target.value})} />
-            </div>
+          <div className='scroll-smooth scrollbar-none'>
+            <label htmlFor="category" className="block text-sm font-medium text-gray-700">Select Category</label>
+            <select
+              name="category"
+              required
+              value={formData?.category || ''}
+              onChange={e => setFormData({ ...formData, category: e.target.value })}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50"
+            >
+              <option value="" disabled className="text-gray-500">
+                -- Select --
+              </option>
+              {category.map((cat: any) => (
+                <option key={cat.id} value={cat.cat} className="text-gray-700">
+                  {cat.cat}
+                </option>
+              ))}
+            </select>
+          </div>
 
-            <div className="flex bg-white rounded-md shadow-md p-4 h-16 gap-2">
-              <label htmlFor="price" className="text-gray-600 w-43 font-semibold block mb-2">Price:</label>
-              <input type="number" id="price" name="price" className="border-2 border-gray-500 p-2 rounded-md w-full" required value={formData?.price || ''} onChange={e => setFormData({...formData, price: e.target.value})} />
-            </div>
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700">Product Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              value={formData?.name || ''}
+              onChange={e => setFormData({ ...formData, name: e.target.value })}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            />
+          </div>
 
-            <div className="flex bg-white rounded-md shadow-md p-4 h-16 gap-2">
-              <label htmlFor="description" className="text-gray-600 w-43 font-semibold block mb-2">Description:</label>
-              <textarea id="description" name="description" className="border-2 border-gray-500 p-2 rounded-md w-full" required value={formData?.description || ''} onChange={e => setFormData({...formData, description: e.target.value})} />
-            </div>
+          <div>
+            <label htmlFor="price" className="block text-sm font-medium text-gray-700">Price</label>
+            <input
+              type="number"
+              id="price"
+              name="price"
+              required
+              value={formData?.price || ''}
+              onChange={e => setFormData({ ...formData, price: e.target.value })}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            />
+          </div>
 
-            <div className="flex bg-white rounded-md shadow-md p-4 h-16 gap-2">
-              <label htmlFor="image" className="text-gray-600 w-43 font-semibold block mb-2">Image:</label>
-              <input type="file" id="image" name="image" className="border-2 border-gray-500 p-2 rounded-md w-full" required onChange={e => setFormData({...formData, image: e.target.value})} />
-            </div>
+          <div>
+            <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
+            <textarea
+              id="description"
+              name="description"
+              required
+              rows={3}
+              value={formData?.description || ''}
+              onChange={e => setFormData({ ...formData, description: e.target.value })}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            />
+          </div>
 
-            <div className="flex bg-white rounded-md shadow-md p-4 h-16 gap-2">
-              <label htmlFor="sameDayDelivery" className="text-gray-600 w-50 font-semibold block mb-2">Same Day Delivery:</label>
-              <div className="flex gap-2">
-                <input type="radio" id="sameDayDeliveryYes" name="sameDayDelivery" value="true" className="border-2 border-gray-500 p-2 rounded-md" checked={formData?.sameDayDelivery === 'true'} onChange={e => setFormData({...formData, sameDayDelivery: e.target.value})} />
-                <label htmlFor="sameDayDeliveryYes" className="text-gray-600 font-semibold block mb-2">Yes</label>
-                <input type="radio" id="sameDayDeliveryNo" name="sameDayDelivery" value="false" className="border-2 border-gray-500 p-2 rounded-md" checked={formData?.sameDayDelivery === 'false'} onChange={e => setFormData({...formData, sameDayDelivery: e.target.value})} />
-                <label htmlFor="sameDayDeliveryNo" className="text-gray-600 font-semibold block mb-2">No</label>
-              </div>
-            </div>
+          <div>
+            <label htmlFor="image" className="block text-sm font-medium text-gray-700">Product Image</label>
+            <input
+              type="file"
+              id="image"
+              name="image"
+              required
+              className="mt-1 block w-full border-gray-300 text-gray-700 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              onChange={e => setFormData({ ...formData, image: e.target.value })}
+            />
+          </div>
 
-            <div className="flex bg-white rounded-md shadow-md p-4 h-16 gap-2">
-              <label htmlFor="type" className="text-gray-600 w-50 font-semibold block mb-2">Type of Gift:</label>
-              <select name="type" required value={formData?.type || ''} onChange={e => setFormData({...formData, type: e.target.value})}>
-                <option value="" className='w-full'>----Select-----</option>
-                <option value="birthday" className='w-full'>birthday</option>
-                <option value="anniversary" className='w-full'>anniversary</option>
-                <option value="marriage" className='w-full'>marriage</option>
-                <option value="other" className='w-full'>other</option>
-              </select>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Same Day Delivery</label>
+            <div className="flex gap-4 mt-2">
+              <label className="inline-flex items-center">
+                <input
+                  type="radio"
+                  name="sameDayDelivery"
+                  value="true"
+                  checked={formData?.sameDayDelivery === 'true'}
+                  onChange={e => setFormData({ ...formData, sameDayDelivery: e.target.value })}
+                  className="text-indigo-600 border-gray-300 focus:ring-indigo-500"
+                />
+                <span className="ml-2">Yes</span>
+              </label>
+              <label className="inline-flex items-center">
+                <input
+                  type="radio"
+                  name="sameDayDelivery"
+                  value="false"
+                  checked={formData?.sameDayDelivery === 'false'}
+                  onChange={e => setFormData({ ...formData, sameDayDelivery: e.target.value })}
+                  className="text-indigo-600 border-gray-300 focus:ring-indigo-500"
+                />
+                <span className="ml-2">No</span>
+              </label>
             </div>
+          </div>
 
-            <div className="flex justify-center mt-4">
-              <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded-md">Add Product</button>
-            </div>
+          <div>
+            <label htmlFor="type" className="block text-sm font-medium text-gray-700">Type of Gift</label>
+            <select
+              name="type"
+              required
+              value={formData?.type || ''}
+              onChange={e => setFormData({ ...formData, type: e.target.value })}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50"
+            >
+              <option value="" disabled className="text-gray-500">
+                -- Select --
+              </option>
+              <option value="birthday" className="text-gray-700">
+                Birthday
+              </option>
+              <option value="anniversary" className="text-gray-700">
+                Anniversary
+              </option>
+              <option value="marriage" className="text-gray-700">
+                Marriage
+              </option>
+              <option value="other" className="text-gray-700">
+                Other
+              </option>
+            </select>
+          </div>
+
+          <div className="pt-4">
+            <button
+              type="submit"
+              className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md shadow-sm transition"
+            >
+              Add Product
+            </button>
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 
 export default Page;
-
 
