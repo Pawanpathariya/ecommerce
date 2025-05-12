@@ -17,13 +17,14 @@ const Page: React.FC = () => {
 
   useEffect(() => {
     const loadData = async () => {
-      const venId= await localStorage.getItem('id');
-      const response = await VendorOrderdetails(venId);
+  const user = localStorage.getItem('user');
+  const venId1 = user ? JSON.parse(user).id : null;
+      const response = await VendorOrderdetails(venId1);
       if (response.orders) {
         console.log(response.orders);
         setOrders(
           response.orders.filter((order: any) =>
-            order.products.some((item: any) => item.venId == venId)
+            order.products.some((item: any) => item.venId == venId1)
           )
         );
       }
@@ -58,7 +59,6 @@ const Page: React.FC = () => {
                 <TableCell>{new Date(order.createdAt).toLocaleString()}</TableCell>
                 <TableCell>
                   {order.products
-                    .filter((item: any) => item.venId == localStorage.getItem('id'))
                     .map((item: any) => (
                       <div key={item.id} className="flex items-center mb-2">
                         <Image

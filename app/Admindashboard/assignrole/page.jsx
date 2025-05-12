@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaUser } from 'react-icons/fa';
-
+import { toast } from 'react-hot-toast';
 const AssignRolePage = () => {
     const [users, setUsers] = useState([]);
     const [alluser, setalluser] = useState([]);
@@ -32,11 +32,11 @@ const AssignRolePage = () => {
         try {
             const response = await axios.post('/api/assignrole', { userId, roleId });
             console.log(response.data);
-            alert('Role assigned successfully!');
+            toast.success('Role assigned successfully!');
             loadUsers();
         } catch (error) {
             console.error('Error assigning role:', error);
-            alert('Error assigning role. Please try again.');
+            toast.error('Error assigning role. Please try again.');
         } finally {
             setLoading(false);
         }

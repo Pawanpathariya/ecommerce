@@ -69,7 +69,7 @@ const CheckoutPage: React.FC = () => {
         quantity: item.quantity,
         price: item.proPrice,
         image: item.proImage,
-        venId: item.vendorId
+        venId: item.userId
             })),
     };
 

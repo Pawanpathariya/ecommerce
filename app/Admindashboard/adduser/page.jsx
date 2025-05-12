@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { FaUser } from 'react-icons/fa'
 import axios from 'axios'
+import { toast } from 'react-hot-toast';
 const AddUserPage = () => {
   const router = useRouter()
   const [name, setName] = useState('')
@@ -19,10 +20,10 @@ const AddUserPage = () => {
       phone,
     })
     if (response.status === 200) {
-      alert('User added successfully')
+      toast.success('User added successfully')
       router.push('/Admindashboard')
     } else {
-      alert('Failed to add user')
+      toast.error('Failed to add user')
     }
 
   }

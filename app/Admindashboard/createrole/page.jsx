@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-
+import { toast } from 'react-hot-toast';
 const CreateRolePage = () => {
   const [roleName, setRoleName] = useState('')
   const [user, setUser] = useState([])
@@ -12,12 +12,12 @@ const CreateRolePage = () => {
     setLoading(true)
     try {
       const response = await axios.post('/api/role', { roleName })
-      alert('Role created successfully')
+      toast.success('Role created successfully')
       setRoleName('')
       getuser() // refresh list
     } catch (error) {
       console.error('Error:', error)
-      alert('Failed to create role')
+      toast.error('Failed to create role')
     }
     setLoading(false)
   }

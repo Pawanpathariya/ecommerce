@@ -2,6 +2,7 @@
 import React, { useState, useEffect,useActionState} from 'react'
 import { addCategory ,getCategory} from '../../actions/addCategory'
 import { FaTrash } from "react-icons/fa";
+import { toast } from 'react-hot-toast';
 const initialState = {
   success: false,
   error: ''
@@ -21,7 +22,7 @@ const Page: React.FC = () => {
   };
   useEffect(()=>{
 if(state.success){
-  alert("Data inserted");
+  toast.success("Data inserted");
 }
   },[state.success])
 
