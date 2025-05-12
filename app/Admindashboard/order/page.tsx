@@ -14,21 +14,23 @@ import {
 
 const Page: React.FC = () => {
   const [orders, setOrders] = useState<any[]>([]);
+  const [vendorId, setVendorId] = useState<string | null>(null);
 
   useEffect(() => {
     const loadData = async () => {
-  const user = localStorage.getItem('user');
-  const venId1 = user ? JSON.parse(user).id : null;
-      const response = await VendorOrderdetails(venId1);
+      const user = localStorage.getItem('user');
+      const venId = user ? JSON.parse(user).id : null;
+      setVendorId(venId);
+
+      const response = await VendorOrderdetails(venId);
       if (response.orders) {
-        console.log(response.orders);
-        setOrders(
-          response.orders.filter((order: any) =>
-            order.products.some((item: any) => item.venId == venId1)
-          )
+        const filteredOrders = response.orders.filter((order: any) =>
+          order.products.some((item: any) => item.venId === venId)
         );
+        setOrders(filteredOrders);
       }
     };
+
     loadData();
   }, []);
 
@@ -42,7 +44,7 @@ const Page: React.FC = () => {
               <TableCell>Order Id</TableCell>
               <TableCell>User Name</TableCell>
               <TableCell>User Email</TableCell>
-              <TableCell>Mobile number</TableCell>
+              <TableCell>Mobile Number</TableCell>
               <TableCell>Order Date</TableCell>
               <TableCell>Products</TableCell>
               <TableCell>Total</TableCell>
@@ -59,16 +61,17 @@ const Page: React.FC = () => {
                 <TableCell>{new Date(order.createdAt).toLocaleString()}</TableCell>
                 <TableCell>
                   {order.products
+                    .filter((item: any) => item.venId === vendorId)
                     .map((item: any) => (
                       <div key={item.id} className="flex items-center mb-2">
                         <Image
                           src={item.image}
                           alt={item.productName}
-                          className="w-12 h-12 mr-2 rounded-md"
+                          className="rounded-md"
                           width={48}
                           height={48}
                         />
-                        <div>
+                        <div className="ml-2">
                           <p className="font-bold">{item.productName}</p>
                           <p>Quantity: {item.quantity}</p>
                           <p>Price: ₹ {item.price}</p>
@@ -86,6 +89,5 @@ const Page: React.FC = () => {
     </div>
   );
 };
-                                                                                                        
-export default Page;
 
+export default Page;

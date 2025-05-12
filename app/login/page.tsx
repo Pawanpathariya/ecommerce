@@ -27,8 +27,8 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="relative">
-      <div className="w-full border border-gray-500 h-13 text-center">
+    <div className="relative mt-10">
+      <div className="w-full  border-gray-500 h-13 text-center">
         <img
           src="/images/igp.png"
           alt="Logo"

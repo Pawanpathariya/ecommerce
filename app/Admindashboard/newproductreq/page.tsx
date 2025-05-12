@@ -22,9 +22,9 @@ const Page: React.FC = () => {
   }, []);
 
   return (
-    <div className="w-full p-4">
+    <div className="w-full p-4 overflow-x-auto overflow-y-auto">
       <h1 className="text-2xl font-bold mb-4 text-center">Product List</h1>
-      <div className="overflow-x-scroll">
+      <div className="overflow-x-auto overflow-y-auto h-150">
         <table className="table w-full">
           <thead>
             <tr className="bg-gray-200">
@@ -84,3 +84,4 @@ const Page: React.FC = () => {
 };
 
 export default Page;
+
