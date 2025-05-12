@@ -4,11 +4,12 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
 import { GetPro } from '../../../actions/getSelectPro'
 import { useDispatch } from 'react-redux'
-import { add} from '../../../redux/cartSlice'
+import { add } from '../../../redux/cartSlice'
 import { addfav as addfavourite } from '../../../redux/favSlice'
 
 const ProductView = () => {
   const { id } = useParams()
+  const dispatch = useDispatch()
   const [product, setProduct] = useState<any>(null)
 
   useEffect(() => {
@@ -23,8 +24,6 @@ const ProductView = () => {
     return <div className="text-center py-20 text-gray-500 text-xl">Loading Product...</div>
   }
 
-  const dispatch = useDispatch()
-
   const handleAddToCart = () => {
     dispatch(add(product))
   }
@@ -37,7 +36,6 @@ const ProductView = () => {
     <div className="min-h-screen bg-gray-100 py-10 px-4 md:px-10">
       <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-md overflow-hidden">
         <div className="md:flex">
-          {/* Product Image */}
           <div className="md:w-1/2">
             <img
               src={product.proImage}
@@ -46,7 +44,6 @@ const ProductView = () => {
             />
           </div>
 
-          {/* Product Details */}
           <div className="md:w-1/2 p-6 space-y-4">
             <h2 className="text-2xl font-bold text-gray-800">{product.proName}</h2>
             <p className="text-sm text-gray-500">{product.proCategory}</p>
@@ -62,7 +59,6 @@ const ProductView = () => {
                     : 'bg-yellow-100 text-yellow-600'
                 }`}
               >
-       
               </span>
             </div>
 
