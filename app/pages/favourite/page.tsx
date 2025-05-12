@@ -5,8 +5,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { addfav, removefav } from '../../redux/favSlice';
 import { add } from '../../redux/cartSlice';
-
-// Define RootState type for your Redux store
+import { useRouter } from 'next/navigation';
 interface RootState {
   addtofav: {
     fav: {
@@ -21,8 +20,7 @@ interface RootState {
 
 const FavouritePage: React.FC = () => {
   const dispatch = useDispatch();
-  
-  // Type the state correctly using RootState
+  const router = useRouter();
   const favouriteProducts = useSelector((state: RootState) => state.addtofav.fav);
 
   return (
@@ -32,7 +30,7 @@ const FavouritePage: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {favouriteProducts?.length > 0 ? favouriteProducts?.map((item, index) => (
             <div key={index} className="max-w-xs bg-white rounded-lg overflow-hidden shadow-lg card card3">
-              {item.proImage && <Image src={item.proImage} alt="Product Image" width={350} height={300} style={{ height: '200px' }} />}
+              {item.proImage && <Image src={item.proImage} alt="Product Image" width={350} height={300} style={{ height: '200px' }}  onClick={() => router.push(`/pages/view/${item.id}`)}/>}
               <div className="p-4">
                 <h3 className="text-xl font-semibold text-gray-800">{item.proName}</h3>
                 <p className="text-gray-600 mt-2">{item.proDescription}</p>

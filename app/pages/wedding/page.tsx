@@ -1,39 +1,36 @@
 'use client'
 import React from 'react'
 import { useEffect, useState } from 'react'
-import { Living } from '../../actions/Productcategory';
+import { Weding } from '../../actions/Productcategory';
 import { useDispatch } from 'react-redux';
 import { add } from '../../redux/cartSlice'
 import { addfav } from '../../redux/favSlice';
 import Image from 'next/image'
 import { AiOutlineTruck } from "react-icons/ai";
 import { useRouter } from 'next/navigation';
-const Loader = () => (
-  <div className="flex items-center justify-center h-screen">
-    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-500"></div>
-  </div>
-);
-
 const page: React.FC = () => {
-  const router = useRouter(); 
   const dispatch = useDispatch();
   const [product, setProduct] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(true);
-
+ const router = useRouter();
   const loaddata = async () => {
-    const response = await Living();
+    const response = await Weding();
     setProduct(response?.products);
     setLoading(false);
   }
 
   useEffect(() => {
-    loaddata()
-  }, [])
+    loaddata();
+  }, []);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 className="text-3xl font-bold text-indigo-500 mt-5 mb-4 text-center ">Home & Living </h1>
-      {loading ? <Loader /> : (
+      <h1 className="text-3xl font-bold text-indigo-500 mt-5 mb-4 text-center">Weding Gifts</h1>
+      {loading ? (
+        <div className="flex items-center justify-center h-screen">
+          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-500"></div>
+        </div>
+      ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {product?.map((item: any, index: number) => (
             <div key={index} className="max-w-xs bg-white rounded-lg overflow-hidden shadow-lg card card3">

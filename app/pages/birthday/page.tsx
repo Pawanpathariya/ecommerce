@@ -7,12 +7,22 @@ import {add} from '../../redux/cartSlice'
 import { addfav } from '../../redux/favSlice';
 import Image from 'next/image'
 import { AiOutlineTruck } from "react-icons/ai";
+import { useRouter } from 'next/navigation';
+const Loader = () => (
+  <div className="flex items-center justify-center">
+    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-500"></div>
+  </div>
+)
+
 const page:React.FC = () => {
+    const router=useRouter();
     const dispatch=useDispatch();
     const [product,setProduct]=useState<any>([]);
+    const [loading,setLoading]=useState<boolean>(true);
     const loaddata=async()=>{
         const response= await Birthday();
         setProduct(response?.products);
+        setLoading(false);
     }
     
     useEffect(()=>{
@@ -22,10 +32,11 @@ const page:React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 className="text-3xl font-bold text-indigo-500 mt-5 mb-4 text-center ">Birthday Gifts</h1>
+      {loading ? <Loader /> : (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
        {product?.map((item:any,index:number)=>(
                 <div key={index} className="max-w-xs bg-white rounded-lg overflow-hidden shadow-lg card card3">
-                  <Image src={item.proImage} alt="Product Image" width={350} height={300} style={{ height:'200px' }} />
+                  <Image src={item.proImage} alt="Product Image" width={350} height={300} style={{ height:'200px' }} onClick={() => router.push(`/pages/view/${item.id}`)} />
                   <div className="p-4">
                     <h3 className="text-xl font-semibold text-gray-800">{item.proName}</h3>
                     <p className="text-gray-600 mt-2">{item.proDescription}</p>
@@ -45,6 +56,7 @@ const page:React.FC = () => {
                 </div>
               ))}
       </div>
+      )}
     </div>
   )
 }
