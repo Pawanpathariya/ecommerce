@@ -1,8 +1,10 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { FaHome, FaEdit, FaUser } from 'react-icons/fa';
+import { FaHome, FaEdit, FaUser, FaChartPie, FaList, FaStore, FaBoxes, FaCalendar } from 'react-icons/fa';
 import { BsDisplay, BsFillCartFill } from 'react-icons/bs';
+import { CiLocationArrow1 } from "react-icons/ci";
+import { FaAngleRight } from "react-icons/fa";
 import {CanComponent} from '../../lib/casl/ability'
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -33,7 +35,7 @@ const Sidebar = () => {
        <CanComponent I="manage" a="Vendor">
           <li>
     <Link href="/Admindashboard" className="text-white hover:underline text-lg font-semibold">
-      <FaEdit className="inline-block mr-2" /> Home
+      <FaHome className="inline-block mr-2" /> Home
     </Link>
   </li>
        </CanComponent>
@@ -41,7 +43,7 @@ const Sidebar = () => {
               <CanComponent I="create" a="Role">
                 <li>
                   <Link href="/Admindashboard/createrole" className="text-white hover:underline text-lg font-semibold">
-                    <BsDisplay className="inline-block mr-2" /> Create Role
+                    <FaChartPie className="inline-block mr-2" /> Create Role
                   </Link>
                 </li>
               </CanComponent>
@@ -56,7 +58,7 @@ const Sidebar = () => {
               <CanComponent I="manage" a="Role">
                 <li>
                   <Link href="/Admindashboard/assignrole" className="text-white hover:underline text-lg font-semibold">
-                    <FaUser className="inline-block mr-2" /> Assign Role
+                    <FaList className="inline-block mr-2" /> Assign Role
                   </Link>
                 </li>
               </CanComponent>
@@ -64,7 +66,7 @@ const Sidebar = () => {
               <CanComponent I="manage" a="Permission">
                 <li>
                   <Link href="/Admindashboard/permission" className="text-white hover:underline text-lg font-semibold">
-                    <BsFillCartFill className="inline-block mr-2" /> Manage Permission
+                    <FaStore className="inline-block mr-2" /> Manage Permission
                   </Link>
                 </li>
               </CanComponent>
@@ -108,14 +110,14 @@ const Sidebar = () => {
        <CanComponent I="manage" a="Vendor">
           <li>
     <Link href="/Admindashboard/vendor" className="text-white hover:underline text-lg font-semibold">
-      <FaEdit className="inline-block mr-2" /> Manage Vendor
+      <CiLocationArrow1 className="inline-block mr-2" /> Manage Vendor
     </Link>
   </li>
        </CanComponent>
        <CanComponent I="manage" a="Category">
           <li>
     <Link href="/Admindashboard/category" className="text-white hover:underline text-lg font-semibold">
-      <FaEdit className="inline-block mr-2" /> Manage Category
+      <FaAngleRight className="inline-block mr-2" /> Manage Category
     </Link>
   </li>
        </CanComponent>
