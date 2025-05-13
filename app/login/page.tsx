@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-hot-toast';
 
 const Login: React.FC = () => {
   const router = useRouter();
@@ -14,7 +15,7 @@ const Login: React.FC = () => {
       const response = await axios.post('/api/login', { email, password });
 
       if (!response.data.user.role) {
-        alert('Role not assigned yet');
+        toast.error('Role not assigned yet');
         return;
       }
 
@@ -22,7 +23,7 @@ const Login: React.FC = () => {
       router.push('/Admindashboard');
     } catch (error) {
       console.error('Login error:', error);
-      alert('Invalid Credentials');
+      toast.error('Invalid Credentials');
     }
   };
 
