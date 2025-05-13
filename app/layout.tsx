@@ -35,7 +35,6 @@ import Script from 'next/script';
 import ReduxProvider from "./reduxProvider";
 import { ClerkProvider } from '@clerk/nextjs';
 import { Toaster } from "react-hot-toast";
-
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
 //   subsets: ["latin"],

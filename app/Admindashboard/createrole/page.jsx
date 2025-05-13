@@ -14,7 +14,7 @@ const CreateRolePage = () => {
       const response = await axios.post('/api/role', { roleName })
       toast.success('Role created successfully')
       setRoleName('')
-      getuser() // refresh list
+      getuser() 
     } catch (error) {
       console.error('Error:', error)
       toast.error('Failed to create role')

@@ -41,7 +41,7 @@ const Login: React.FC = () => {
         />
       </div>
 
-      <div className="p-12 absolute top-90 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-lg w-130 h-auto bg-white">
+      <div className="p-12 absolute top-90 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-lg max-w-md w-full">
         <div>
           <h1 className="text-2xl inter">Login</h1>
         </div>

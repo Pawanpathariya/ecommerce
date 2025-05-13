@@ -1,5 +1,3 @@
-
-
 'use client';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -56,15 +54,15 @@ const Page: React.FC = () => {
 
   if (!authorized) {
     return (
-      <div className="text-center p-10 text-4xl font-semibold text-red-500 bg-white rounded-md shadow-md">
+      <div className="text-center p-4 text-4xl font-semibold text-red-500 bg-white rounded-md shadow-md">
         Welcome to Vendor Dashboard
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto p-4 overflow-y-auto h-150 w-300">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4" onClick={() => router.push('/Admindashboard/allproduct')}>
+    <div className="container mx-auto p-4 overflow-y-auto h-150 w-full sm:3/6 md:w-3/4 lg:w-full xl:w-300">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" onClick={() => router.push('/Admindashboard/allproduct')}>
         <div className="bg-white p-4 rounded-md shadow-md">
           <h2 className="text-xl font-bold">Total Orders</h2>
           <p className="text-4xl font-bold">{totalOrders}</p>
@@ -79,8 +77,8 @@ const Page: React.FC = () => {
         </div>
       </div>
 
-      <div>
-        <h2 className="text-2xl font-bold mt-8">Sales Chart</h2>
+      <div className="mt-8">
+        <h2 className="text-2xl font-bold">Sales Chart</h2>
         <SalesChart />
       </div>
     </div>
@@ -88,3 +86,4 @@ const Page: React.FC = () => {
 };
 
 export default Page;
+

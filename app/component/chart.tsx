@@ -21,9 +21,9 @@ export default function SalesChart() {
   }, []);
 
   return (
-    <div className="p-6 bg-white rounded-2xl shadow-xl w-full max-w-6xl mx-auto overflow-scroll">
+    <div className="p-6 bg-white rounded-2xl shadow-xl max-w-full md:max-w-7xl lg:max-w-7xl xl:max-w-full">
       <h2 className="text-2xl font-semibold text-gray-800 mb-6">📊 Sales Overview</h2>
-      <ResponsiveContainer width={1000} height={400}>
+      <ResponsiveContainer width="100%" height={400}>
         <BarChart data={sales}>
           <defs>
             <linearGradient id="colorSales" x1="0" y1="0" x2="0" y2="1">
