@@ -30,7 +30,7 @@ const AddUserPage = () => {
 
   return (
     <div className="h-screen w-full p-0">
-      <div className="w-full mx-auto p-8 bg-white rounded-lg shadow-md">
+      <div className="w-full mx-auto p-8  rounded-lg shadow-md">
         <div className="flex flex-col ml-100 mt-20 w-100">
           <h1 className="text-4xl font-bold text-gray-800 mb-4">
             <FaUser className="inline-block mr-2" /> Add User

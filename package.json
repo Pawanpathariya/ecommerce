@@ -12,10 +12,7 @@
   "dependencies": {
     "@casl/ability": "^6.7.3",
     "@casl/react": "^5.0.0",
-    "@chakra-ui/react": "^3.17.0",
     "@clerk/nextjs": "^6.16.0",
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
     "@mui/material": "^7.0.2",
     "@prisma/client": "^6.7.0",
     "@reduxjs/toolkit": "^2.7.0",
@@ -25,7 +22,6 @@
     "bootstrap": "^5.3.5",
     "dotenv": "^16.5.0",
     "fortawesome": "^0.0.1-security",
-    "framer-motion": "^12.11.0",
     "html2canvas": "^1.4.1",
     "jspdf": "^3.0.1",
     "jspdf-autotable": "^5.0.2",
