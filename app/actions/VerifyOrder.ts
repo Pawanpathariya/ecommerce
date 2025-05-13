@@ -9,8 +9,6 @@ export async function verifyOrder(orderId: string, razorpayPaymentId: string, ra
     .update(body)
     .digest('hex');
 
-  console.log('Expected Signature:', expectedSignature);
-  console.log('Received Razorpay Signature:', razorpaySignature);
 
   if (expectedSignature === razorpaySignature) {
   //   await prisma.order.create({

@@ -2,7 +2,6 @@
 
 import {prisma} from '../../lib/prisma';
 export async function GetPro(id: string) {
-  console.log("Fetching products");
   try {
     const products = await prisma.productCate.findUnique({
       where: {

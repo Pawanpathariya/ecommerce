@@ -5,7 +5,6 @@ export async function Adminaction(prevState: any, formData: FormData) {
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
     const phone = formData.get('phone') as string;
-console.log(name,email,password,phone)  
     
     try {
         const product = await prisma.user.create({

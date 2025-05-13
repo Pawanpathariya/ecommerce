@@ -4,8 +4,6 @@ import nodemailer from 'nodemailer';
 import {prisma} from '../../lib/prisma';
 
 export async function Orderdatabase({response,orderData}) {
-console.log("response",response)
-console.log("orderData",orderData)
   try {
     const orders = await prisma.order.create({
         data: {

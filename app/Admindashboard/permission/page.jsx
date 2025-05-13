@@ -21,7 +21,6 @@ const page = () => {
   const handleCheckboxChange = async (roleId, permission) => {
     try {
       const response = await axios.post('/api/role/managerole', { roleId, permission })
-      console.log(response.data)
     } catch (error) {
       console.error('Error updating permission:', error)
     }

@@ -3,7 +3,6 @@
 import {prisma} from '../../lib/prisma';
 
 export async function getVendorAdmin() {
-  console.log("Fetching all vendors");
   try {
     const vendors = await prisma.user.findMany(
       {

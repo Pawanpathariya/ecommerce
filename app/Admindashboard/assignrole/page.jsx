@@ -14,7 +14,6 @@ const AssignRolePage = () => {
         try {
             const response = await axios.get('/api/user');
             setalluser(response.data);
-            console.log(response.data);
             const usersWithoutRoles = response.data.filter(user => !user.roleId);
             setUsers(usersWithoutRoles);
             
@@ -31,7 +30,6 @@ const AssignRolePage = () => {
         setLoading(true);
         try {
             const response = await axios.post('/api/assignrole', { userId, roleId });
-            console.log(response.data);
             toast.success('Role assigned successfully!');
             loadUsers();
         } catch (error) {

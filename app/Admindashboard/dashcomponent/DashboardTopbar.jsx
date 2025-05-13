@@ -4,12 +4,23 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react'
 const DashboardTopbar = () => {
   const router = useRouter();
-
+  const [roleName, setRoleName] = useState('');
+  useEffect(() => {
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      try {
+        const parsedUser = JSON.parse(userData);
+        setRoleName(parsedUser?.role?.name);
+      } catch (error) {
+        console.error('Invalid user data in localStorage:', error);
+      }
+    }
+  }, [])
   return (
     <div className="bg-gray-700 p-4 fixed top-0 left-0 w-full h-16 flex justify-between items-center">
       <h1 className="text-white text-2xl font-semibold ml-4 md:ml-10 pl-4">
         <Link href="/Admindashboard" >
-           Dashboard
+          {roleName ? `${roleName} Dashboard` : 'Dashboard'}
         </Link>
       </h1>
       <div className="flex justify-end items-center mr-4 md:mr-10">

@@ -3,7 +3,6 @@
 import {prisma} from '../../lib/prisma';
 
 export async function SameDayDelivery() {
-  console.log("Fetching all products");
   try {
     const products = await prisma.productCate.findMany({
       where: {
@@ -20,7 +19,6 @@ export async function SameDayDelivery() {
 
 
 export async function Flowers() {
-  console.log("Fetching all products");
   try {
     const products = await prisma.productCate.findMany({
       where: {
@@ -37,7 +35,6 @@ export async function Flowers() {
 
 
 export async function Cakes() {
-  console.log("Fetching all products");
   try {
     const products = await prisma.productCate.findMany({
       where: {
@@ -53,7 +50,6 @@ export async function Cakes() {
 }
 
 export async function Personalized() {
-  console.log("Fetching all products");
   try {
     const products = await prisma.productCate.findMany({
       where: {
@@ -71,7 +67,6 @@ export async function Personalized() {
 
 
 export async function Plants() {
-  console.log("Fetching all products");
   try {
     const products = await prisma.productCate.findMany({
       where: {
@@ -89,7 +84,6 @@ export async function Plants() {
 
 
 export async function Fashion() {
-  console.log("Fetching all products");
   try {
     const products = await prisma.productCate.findMany({
       where: {
@@ -105,7 +99,6 @@ export async function Fashion() {
 }
 
 export async function Living() {
-  console.log("Fetching all products");
   try {
     const products = await prisma.productCate.findMany({
       where: {
@@ -120,7 +113,6 @@ export async function Living() {
   }
 }
 export async function Food() {
-  console.log("Fetching all products");
   try {
     const products = await prisma.productCate.findMany({
       where: {
@@ -135,7 +127,6 @@ export async function Food() {
   }
 }
 export async function Weding() {
-  console.log("Fetching all products");
   try {
     const products = await prisma.productCate.findMany({
       where: {
@@ -153,7 +144,6 @@ export async function Weding() {
 
 
 export async function Anniversary() {
-  console.log("Fetching all products");
   try {
     const products = await prisma.productCate.findMany({
       where: {
@@ -169,7 +159,6 @@ export async function Anniversary() {
 }
 
 export async function Birthday() {
-  console.log("Fetching all products");
   try {
     const products = await prisma.productCate.findMany({
       where: {
@@ -185,7 +174,6 @@ export async function Birthday() {
 }
 
 export async function Othors() {
-  console.log("Fetching all products");
   try {
     const products = await prisma.productCate.findMany({
       where: {
@@ -202,7 +190,6 @@ export async function Othors() {
 
 
 export async function getAllProduct() {
-  console.log("Fetching all products");
   try {
     const products = await prisma.productCate.findMany({
       where: {

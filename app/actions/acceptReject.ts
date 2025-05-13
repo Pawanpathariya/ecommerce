@@ -3,13 +3,11 @@ import nodemailer from 'nodemailer';
 import {prisma} from '../../lib/prisma';
 
 export async function ChangeStatus({id,stat}) {
-  console.log(id, stat);
   try {
     const updatedProduct = await prisma.productCate.update({
       where: { id },
       data: { status: stat },
     });
-    console.log(updatedProduct);
     
     const user = await prisma.user.findUnique({
       where: {

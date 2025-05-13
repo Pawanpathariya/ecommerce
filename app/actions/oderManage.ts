@@ -3,7 +3,6 @@
 import {prisma} from '../../lib/prisma';
 
 export async function Orderdetails() {
-  console.log("Fetching all orders from the database...");
   try {
     const orders = await prisma.order.findMany();
     return { success: true, orders };

@@ -12,8 +12,6 @@ const Layout= ({ children }) => {
         if (!storedUser) return;
     
         const user = JSON.parse(storedUser);
-        console.log('User Role:', user.role); 
-        console.log('User Permissions:', user.role.permissions); 
         
         const abilityInstance = defineAbilitiesFor(user);
         setAbility(abilityInstance);  
